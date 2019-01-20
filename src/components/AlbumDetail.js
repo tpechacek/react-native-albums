@@ -2,14 +2,16 @@ import React from 'react';
 import { Text, View, Image } from 'react-native';
 import Card from './Card';
 import CardSection from './CardSection';
+import Button from './Button';
 
 const AlbumDetail = ({ album }) => {
-  const { title, artist, thumbnail_image } = album;
+  const { title, artist, thumbnail_image, image } = album;
   const {
     headerContentStyle,
     thumbnailStyle,
     thumbnailContainerStyle,
-    headerTextStyle
+    headerTextStyle,
+    imageStyle
   } = styles;
 
   return (
@@ -22,6 +24,14 @@ const AlbumDetail = ({ album }) => {
           <Text style={headerTextStyle}>{title}</Text>
           <Text>{artist}</Text>
         </View>
+      </CardSection>
+
+      <CardSection>
+        <Image style={imageStyle} source={{ uri: image }} />
+      </CardSection>
+
+      <CardSection>
+        <Button />
       </CardSection>
     </Card>
   );
@@ -44,6 +54,12 @@ const styles = {
     alignItems: 'center',
     marginLeft: 10,
     marginRight: 10
+  },
+  imageStyle: {
+    height: 300,
+    // Flex with width of null causes it go full width for some reason?
+    flex: 1,
+    width: null
   }
 };
 
